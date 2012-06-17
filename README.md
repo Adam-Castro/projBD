@@ -1,4 +1,4 @@
-projBD
+MichiBD
 ======
 
 Implementação MichiBD para a disciplina de Projeto de Banco de Dados
@@ -9,4 +9,4 @@ Done things:
 
 TODO:
 -----
-- Criar a transparência do banco
+- Criar a transparência do endereço com banco
