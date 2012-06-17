@@ -20,8 +20,8 @@ class principal:
 		self.end = endereco()
 		#self.end.create()
 		#self.end.insert('bronze','227','ouro verde','rio das ostras','rj','28890000')
-		#self.end.update_rua('virgem','1')
-		self.end.delete(2)
+		self.end.update_rua('virgem',4)
+		#self.end.delete(3)
 		self.end.close()
 
 if __name__ == '__main__':
