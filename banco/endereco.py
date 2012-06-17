@@ -34,7 +34,7 @@ class endereco:
     def update_rua(self,rua,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE endereco_tbl 
-            SET rua = '%s'where identificador = %s
+            SET rua = '%s' where identificador = %s
             """ % (rua,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -47,7 +47,7 @@ class endereco:
     def update_numero(self,numero,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE endereco_tbl 
-            SET numero = '%s'where identificador = %s
+            SET numero = %s where identificador = %s
             """ % (numero,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -60,7 +60,7 @@ class endereco:
     def update_bairro(self,bairro,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE endereco_tbl 
-            SET bairro = '%s'where identificador = %s
+            SET bairro = '%s' where identificador = %s
             """ % (bairro,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -73,7 +73,7 @@ class endereco:
     def update_cidade(self,cidade,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE endereco_tbl 
-            SET cidade = '%s'where identificador = %s
+            SET cidade = '%s' where identificador = %s
             """ % (cidade,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -86,7 +86,7 @@ class endereco:
     def update_estado(self,estado,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE endereco_tbl 
-            SET estado = '%s'where identificador = %s
+            SET estado = '%s' where identificador = %s
             """ % (estado,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -99,7 +99,7 @@ class endereco:
     def update_cep(self,cep,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE endereco_tbl 
-            SET cep = '%s'where identificador = %s
+            SET cep = '%s' where identificador = %s
             """ % (cep,identificador)
         try:
             self.cursor.execute(self.sql)

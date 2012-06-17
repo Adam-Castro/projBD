@@ -34,7 +34,7 @@ class dojo:
     def update_nome(self,nome,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE dojo_tbl 
-            SET nome = '%s'where identificador = %s
+            SET nome = '%s' where identificador = %s
             """ % (nome,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -47,7 +47,7 @@ class dojo:
     def update_numero(self,telefone,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE dojo_tbl 
-            SET telefone = '%s'where identificador = %s
+            SET telefone = '%s' where identificador = %s
             """ % (telefone,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -60,7 +60,7 @@ class dojo:
     def update_identificador_end(self,identificador_end,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE dojo_tbl 
-            SET identificador_end = '%s'where identificador = %s
+            SET identificador_end = %s where identificador = %s
             """ % (identificador_end,identificador)
         try:
             self.cursor.execute(self.sql)
@@ -73,7 +73,7 @@ class dojo:
     def update_identificador_prof(self,identificador_prof,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE dojo_tbl 
-            SET identificador_prof = '%s'where identificador = %s
+            SET identificador_prof = %s where identificador = %s
             """ % (identificador_prof,identificador)
         try:
             self.cursor.execute(self.sql)
