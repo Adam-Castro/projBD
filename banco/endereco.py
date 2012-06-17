@@ -37,7 +37,7 @@ class endereco:
             self.db.rollback()
             print 'db rollback tabela endereco'
 
-    def altera_rua(self,rua,identificador):
+    def update_rua(self,rua,identificador):
         self.cursor = self.db.cursor()
         self.sql = """UPDATE endereco_tbl 
             SET rua = '%s'where identificador = %s
@@ -50,7 +50,7 @@ class endereco:
             self.db.rollback()
             print 'db rollback rua tabela endereco'
 
-    def altera_numero(self,numero,identificador):
+    def update_numero(self,numero,identificador):
         self.cursor = self.db.cursor()
         self.sql = """UPDATE endereco_tbl 
             SET numero = '%s'where identificador = %s
@@ -63,7 +63,7 @@ class endereco:
             self.db.rollback()
             print 'db rollback numero tabela endereco'
 
-    def altera_bairro(self,bairro,identificador):
+    def update_bairro(self,bairro,identificador):
         self.cursor = self.db.cursor()
         self.sql = """UPDATE endereco_tbl 
             SET bairro = '%s'where identificador = %s
@@ -76,7 +76,7 @@ class endereco:
             self.db.rollback()
             print 'db rollback bairro tabela endereco'
 
-    def altera_cidade(self,cidade,identificador):
+    def update_cidade(self,cidade,identificador):
         self.cursor = self.db.cursor()
         self.sql = """UPDATE endereco_tbl 
             SET cidade = '%s'where identificador = %s
@@ -89,7 +89,7 @@ class endereco:
             self.db.rollback()
             print 'db rollback cidade tabela endereco'
 
-    def altera_estado(self,estado,identificador):
+    def update_estado(self,estado,identificador):
         self.cursor = self.db.cursor()
         self.sql = """UPDATE endereco_tbl 
             SET estado = '%s'where identificador = %s
@@ -102,7 +102,7 @@ class endereco:
             self.db.rollback()
             print 'db rollback estado tabela endereco'
 
-    def altera_cep(self,cep,identificador):
+    def update_cep(self,cep,identificador):
         self.cursor = self.db.cursor()
         self.sql = """UPDATE endereco_tbl 
             SET cep = '%s'where identificador = %s
@@ -120,3 +120,16 @@ class endereco:
 
     def close(self):
         self.db.close()
+
+    def delete(self,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """DELETE FROM endereco_tbl
+          WHERE identificador = %s""" % (identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'deletou identificador %s na tabela endereco' % identificador
+        except:
+            self.db.rollback()
+            print 'db rollback tabela endereco, nao deletou identificador %s' % identificador
+
