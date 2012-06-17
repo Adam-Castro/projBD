@@ -37,8 +37,84 @@ class endereco:
             self.db.rollback()
             print 'db rollback tabela endereco'
 
-#def remove(self):
-#def altera(self):
+    def altera_rua(self,rua,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """UPDATE endereco_tbl 
+            SET rua = '%s'where identificador = %s
+            """ % (rua,identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'atualizou rua tabela endereco'
+        except:
+            self.db.rollback()
+            print 'db rollback rua tabela endereco'
+
+    def altera_numero(self,numero,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """UPDATE endereco_tbl 
+            SET numero = '%s'where identificador = %s
+            """ % (numero,identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'atualizou numero tabela endereco'
+        except:
+            self.db.rollback()
+            print 'db rollback numero tabela endereco'
+
+    def altera_bairro(self,bairro,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """UPDATE endereco_tbl 
+            SET bairro = '%s'where identificador = %s
+            """ % (bairro,identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'atualizou bairro tabela endereco'
+        except:
+            self.db.rollback()
+            print 'db rollback bairro tabela endereco'
+
+    def altera_cidade(self,cidade,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """UPDATE endereco_tbl 
+            SET cidade = '%s'where identificador = %s
+            """ % (cidade,identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'atualizou cidade tabela endereco'
+        except:
+            self.db.rollback()
+            print 'db rollback cidade tabela endereco'
+
+    def altera_estado(self,estado,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """UPDATE endereco_tbl 
+            SET estado = '%s'where identificador = %s
+            """ % (estado,identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'atualizou estado tabela endereco'
+        except:
+            self.db.rollback()
+            print 'db rollback estado tabela endereco'
+
+    def altera_cep(self,cep,identificador):
+        self.cursor = self.db.cursor()
+        self.sql = """UPDATE endereco_tbl 
+            SET cep = '%s'where identificador = %s
+            """ % (cep,identificador)
+        try:
+            self.cursor.execute(self.sql)
+            self.db.commit()
+            print 'atualizou cep tabela endereco'
+        except:
+            self.db.rollback()
+            print 'db rollback cep tabela endereco'
+
     def conecta(self):
         self.db = MySQLdb.connect(self.newtork,self.user,self.passw,self.bd)
 
