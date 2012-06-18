@@ -8,16 +8,21 @@ class endereco:
     def create(self):
         self.cursor = self.conexao.db.cursor()
         self.sql = """
-            CREATE TABLE endereco_tbl(
-            identificador int(4) AUTO_INCREMENT,
-            rua varchar(30) NOT NULL,
-            numero int(4),
-            bairro varchar(30) NOT NULL,
-            cidade varchar(30) NOT NULL,
-            estado varchar(2) NOT NULL,
-            cep varchar(8),
-            PRIMARY KEY (identificador))"""
-        self.cursor.execute(self.sql)
+            CREATE TABLE endereco_tbl (
+			  identificador INT(4) NOT NULL AUTO_INCREMENT,
+			  rua VARCHAR(30) NOT NULL,
+			  numero INT(4) NULL,
+			  bairro VARCHAR(30) NULL,
+			  cidade VARCHAR(30) NULL,
+			  estado VARCHAR(2) NULL,
+			  cep VARCHAR(8) NULL,
+			  PRIMARY KEY(identificador)
+			)
+			ENGINE=InnoDB"""
+        try:
+			self.cursor.execute(self.sql)
+		except:
+			print "Nao criou tabela endereco_tbl"
 
     def insert(self,rua,numero,bairro,cidade,estado,cep):
         self.cursor = self.conexao.db.cursor()		
@@ -112,6 +117,14 @@ class endereco:
     def close(self):
 		self.conexao.close()
 
+    def drop(self):
+		self.cursor = self.conexao.db.cursor()
+        self.sql = "DROP TABLE endereco_tbl"
+        try:
+			self.cursor.execute(self.sql)
+		except:
+			print "nao deletou tabela endereco_tbl"
+    
     def delete(self,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """DELETE FROM endereco_tbl

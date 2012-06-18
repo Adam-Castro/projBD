@@ -17,4 +17,5 @@ Done things:
 
 TODO:
 -----
-- Criar a transparência do endereço com banco
+- Corrigido banco/endereco
+- Corrigido banco/dojo

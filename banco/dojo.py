@@ -8,21 +8,29 @@ class dojo:
     def create(self):
         self.cursor = self.conexao.db.cursor()
         self.sql = """
-            CREATE TABLE dojo_tbl(
-            identificador int(4) NOT NULL AUTO_INCREMENT,            
-            nome varchar(30) NOT NULL,
-            telefone varchar(10),
-            identificador_end int(4) NOT NULL,
-            identificador_prof int(4) NOT NULL,
-            FOREIGN KEY(identificador_end) REFERENCES endereco_tbl (identificador),
-            FOREIGN KEY(identificador_prof) REFERENCES professor_tbl (identificador),
-            PRIMARY KEY (identificador))"""
+			CREATE TABLE dojo_tbl (
+			  identificador INT(4) NOT NULL AUTO_INCREMENT,
+			  identificador_end INT(4) NOT NULL,
+			  nome VARCHAR(30) NOT NULL,
+			  telefone VARCHAR(10) NULL,
+			  PRIMARY KEY(identificador, identificador_end),
+			  FOREIGN KEY(identificador_end)
+				REFERENCES endereco_tbl(identificador)
+				  ON DELETE RESTRICT
+				  ON UPDATE CASCADE
+			)
+			ENGINE=InnoDB"""
         self.cursor.execute(self.sql)
 
-    def insert(self,nome,telefone,identificador_end,identificador_prof):
+    def drop(self):
+		self.cursor = self.conexao.db.cursor()
+		self.sql = "DROP TABLE dojo_tbl"
+		self.cursor.execute(self.sql)
+
+    def insert(self,identificador_end,nome,telefone):
         self.cursor = self.conexao.db.cursor()		
-        self.sql = """INSERT INTO dojo_tbl (identificador,nome,telefone,identificador_end,identificador_prof)
-            VALUES ('','%s',%s,%s,%s)""" % (nome,telefone,identificador_end,identificador_prof)
+        self.sql = """INSERT INTO dojo_tbl (identificador,identificador_end,nome,telefone)
+            VALUES ('',%s,'%s','%s')""" % (identificador_end,nome,telefone)
         try:
             self.cursor.execute(self.sql)
             self.conexao.db.commit()
@@ -44,7 +52,7 @@ class dojo:
             self.conexao.db.rollback()
             print 'db rollback nome tabela dojo'
 
-    def update_numero(self,telefone,identificador):
+    def update_telefone(self,telefone,identificador):
         self.cursor = self.conexao.db.cursor()
         self.sql = """UPDATE dojo_tbl 
             SET telefone = '%s' where identificador = %s
@@ -69,19 +77,6 @@ class dojo:
         except:
             self.conexao.db.rollback()
             print 'db rollback endereco tabela dojo'
-
-    def update_identificador_prof(self,identificador_prof,identificador):
-        self.cursor = self.conexao.db.cursor()
-        self.sql = """UPDATE dojo_tbl 
-            SET identificador_prof = %s where identificador = %s
-            """ % (identificador_prof,identificador)
-        try:
-            self.cursor.execute(self.sql)
-            self.conexao.db.commit()
-            print 'atualizou professor tabela dojo'
-        except:
-            self.conexao.db.rollback()
-            print 'db rollback professor tabela dojo'
 
     def close(self):
 		self.conexao.close()
