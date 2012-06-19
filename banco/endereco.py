@@ -1,3 +1,5 @@
+# Last-modified: 18 Jun 2012 23:25:31
+
 from banco.conexao import *
 
 class endereco:
@@ -8,25 +10,21 @@ class endereco:
     def create(self):
         self.cursor = self.conexao.db.cursor()
         self.sql = """
-            CREATE TABLE [IF NOT EXISTS] endereco_tbl (
-			  identificador INT(4) NOT NULL AUTO_INCREMENT,
-			  rua VARCHAR(30) NOT NULL,
-			  numero INT(4) NULL,
-			  bairro VARCHAR(30) NULL,
-			  cidade VARCHAR(30) NULL,
-			  estado VARCHAR(2) NULL,
-			  cep VARCHAR(8) NULL,
-			  PRIMARY KEY(identificador)
-			)
-			ENGINE=InnoDB"""
-        try:
-			self.cursor.execute(self.sql)
-		except:
-			print "Nao criou tabela endereco_tbl"
+            CREATE TABLE IF NOT EXISTS endereco_tbl (
+              identificador INT(4) NOT NULL AUTO_INCREMENT,
+              rua VARCHAR(30) NOT NULL,
+              numero INT(4) NULL,
+              bairro VARCHAR(30) NULL,
+              cidade VARCHAR(30) NULL,
+              estado VARCHAR(2) NULL,
+              cep VARCHAR(8) NULL,
+              PRIMARY KEY(identificador)
+            )ENGINE=InnoDB"""
+        self.cursor.execute(self.sql)
 
     def insert(self,rua,numero,bairro,cidade,estado,cep):
-        self.cursor = self.conexao.db.cursor()		
-        self.sql = """INSERT INTO endereco_tbl (identificador,rua,numero,bairro,cidade,estado,cep) 
+        self.cursor = self.conexao.db.cursor()
+        self.sql = """INSERT INTO endereco_tbl (identificador,rua,numero,bairro,cidade,estado,cep)
             VALUES ('','%s',%s,'%s','%s','%s','%s')""" % (rua,numero,bairro,cidade,estado,cep)
         try:
             self.cursor.execute(self.sql)
@@ -51,7 +49,7 @@ class endereco:
 
     def update_numero(self,numero,identificador):
         self.cursor = self.conexao.db.cursor()
-        self.sql = """UPDATE endereco_tbl 
+        self.sql = """UPDATE endereco_tbl
             SET numero = %s where identificador = %s
             """ % (numero,identificador)
         try:
@@ -115,15 +113,15 @@ class endereco:
             print 'db rollback cep tabela endereco'
 
     def close(self):
-		self.conexao.close()
+        self.conexao.close()
 
     def drop(self):
-		self.cursor = self.conexao.db.cursor()
-        self.sql = "DROP TABLE [IF EXISTS] endereco_tbl"
+        self.cursor = self.conexao.db.cursor()
+        self.sql = "DROP TABLE IF EXISTS endereco_tbl"
         try:
-			self.cursor.execute(self.sql)
-		except:
-			print "nao deletou tabela endereco_tbl"
+            self.cursor.execute(self.sql)
+        except:
+            print "nao deletou tabela endereco_tbl"
 
     def delete(self,identificador):
         self.cursor = self.conexao.db.cursor()
